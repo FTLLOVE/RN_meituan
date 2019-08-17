@@ -1,11 +1,28 @@
 import React, { PureComponent } from 'react'
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList, RefreshControl } from 'react-native'
 import DimensionsUtils from '../../utils/DimensionsUtils'
 import Colors from '../../widget/Colors'
 import SpaceWidget from '../SpaceWidget'
-
+import axios from 'axios'
+import * as api from '../../api'
+import GuessScene from './GuessScene'
 
 class GroupPurchaseScene extends PureComponent {
+
+   constructor(props) {
+      super(props)
+      this.state = {
+         dataList: [],
+         refreshing: false
+      }
+   }
+
+   componentDidMount() {
+      let arr = api.guessList.sort(() => (0.5 - Math.random()))
+      this.setState({
+         dataList: arr
+      })
+   }
 
    static navigationOptions = ({ navigation }) => ({
       headerTitle: (
@@ -35,9 +52,30 @@ class GroupPurchaseScene extends PureComponent {
    })
 
    render() {
+      return (
+         <View style={{ flex: 1 }}>
+            <FlatList
+               ListHeaderComponent={() => this.renderHeaderComponent()}
+               keyExtractor={(item, index) => index}
+               data={this.state.dataList}
+               renderItem={this.renderItem}
+              
+            />
+         </View>
+      )
+   }
+
+   renderItem = (rowData) => {
+      return (
+         <GuessScene
+            info={rowData.item}
+         />
+      )
+   }
+
+   renderHeaderComponent = () => {
       let { info } = this.props.navigation.state.params
       let imageUrl = info.imgUrl.replace("w.h", "480.0")
-
       return (
          <View style={styles.container}>
             <View>
@@ -45,7 +83,6 @@ class GroupPurchaseScene extends PureComponent {
                   source={{ uri: imageUrl }}
                   style={styles.banner}
                />
-
                <View style={styles.topContainer}>
                   <Text style={{ fontSize: 15, color: Colors.primary, fontWeight: 'bold', }}>¥</Text>
                   <Text style={{ fontSize: 30, color: Colors.primary, marginBottom: -10 }}>{info.currentPrice}</Text>
@@ -58,7 +95,6 @@ class GroupPurchaseScene extends PureComponent {
                   </TouchableOpacity>
                </View>
             </View>
-
             <View style={{
                width: DimensionsUtils.width,
                height: StyleSheet.hairlineWidth,
@@ -80,6 +116,17 @@ class GroupPurchaseScene extends PureComponent {
 
             <SpaceWidget />
 
+            <View style={styles.guessContainer}>
+               <Text style={{ fontSize: 15 }}>猜你喜欢</Text>
+            </View>
+
+            <View style={{
+               width: DimensionsUtils.width,
+               height: StyleSheet.hairlineWidth,
+               backgroundColor: Colors.border,
+
+            }}>
+            </View>
          </View >
       )
    }
@@ -112,6 +159,11 @@ const styles = StyleSheet.create({
       padding: 10,
       flexDirection: 'row',
       alignItems: 'center'
+   },
+   guessContainer: {
+      padding: 15,
+      height: 30,
+      justifyContent: 'center',
    }
 })
 
