@@ -5,6 +5,7 @@
 ## 效果图
 <img src="https://github.com/FTLLOVE/RN_meituan/blob/master/image/index.png" width="450" height="1000" align=center />
 <img src="https://github.com/FTLLOVE/RN_meituan/blob/master/image/detail.png" width="450" height="1000" align=center />
+<img src="https://github.com/FTLLOVE/RN_meituan/blob/master/image/order.png" width="450" height="1000" align=center />
 <img src="https://github.com/FTLLOVE/RN_meituan/blob/master/image/nearby.png" width="450" height="1000" align=center />
 <img src="https://github.com/FTLLOVE/RN_meituan/blob/master/image/my.png" width="450" height="1000" align=center />
 ## 说明：
