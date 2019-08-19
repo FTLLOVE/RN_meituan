@@ -4,3 +4,7 @@
 
 ## 效果图
 
+```html
+<img src="https://github.com/FTLLOVE/RN_meituan/blob/master/image/index.png" width="500" hegiht="313" align=center />
+```
+
