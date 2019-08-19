@@ -48,6 +48,13 @@
 7. 地图
 8. 消息通知
 
+## 克隆
+`git clone https://github.com/FTLLOVE/RN_meituan.git`
+## npm 安装
+`npm install `
+## 运行
+ 1. `react-native link`
+ 2. `react-native run-android`
 ## 注意事项
 
 我会手把手的将这个项目一行一行的代码进行书写，并进行讲解，但是需要一定的时间。所以多多谅解啊！！！
